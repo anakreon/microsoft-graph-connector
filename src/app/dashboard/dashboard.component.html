@@ -1,0 +1,6 @@
+<p *ngIf="isUserLoggedIn()">
+    Username: {{ getUsername() }}
+    Token expire date: {{ tokenExpireDate | date : 'medium'}}
+    Token: {{ accessToken }}
+</p>
+<button (click)="authenticate()">Connect to Outlook</button>
