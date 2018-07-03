@@ -6,6 +6,6 @@ export const environment = {
         appName: 'appName',
         appId: 'appId',
         publicKey: 'publicKey',
-        scopes: 'openid profile User.Read Mail.Read'
+        scopes: 'openid profile User.Read Mail.Read Calendars.Read'
     }
 };

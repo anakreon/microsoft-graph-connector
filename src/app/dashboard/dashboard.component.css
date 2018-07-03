@@ -1,0 +1,7 @@
+.meeting-wrapper {
+    display: flex;
+}
+
+.meeting-card {
+    margin: 5px;
+}
