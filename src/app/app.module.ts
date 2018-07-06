@@ -6,10 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatButtonModule, MatCardModule, MatSnackBarModule, MatToolbarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import {
+    MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule,
+    MatSnackBarModule, MatTabsModule, MatToolbarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MeetingsComponent } from './meetings/meetings.component';
+import { MailsComponent } from './mails/mails.component';
+import { EditMeetingComponent } from './edit-meeting/edit-meeting.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +23,9 @@ import { MeetingsComponent } from './meetings/meetings.component';
         DashboardComponent,
         LoginComponent,
         NavbarComponent,
-        MeetingsComponent
+        MeetingsComponent,
+        MailsComponent,
+        EditMeetingComponent
     ],
     imports: [
         BrowserModule,
@@ -25,8 +33,13 @@ import { MeetingsComponent } from './meetings/meetings.component';
         BrowserAnimationsModule,
         MatButtonModule,
         MatCardModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
         MatSnackBarModule,
-        MatToolbarModule
+        MatTabsModule,
+        MatToolbarModule,
+        ReactiveFormsModule
     ],
     providers: [
         {
@@ -37,6 +50,7 @@ import { MeetingsComponent } from './meetings/meetings.component';
             }
         }
     ],
+    entryComponents: [EditMeetingComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

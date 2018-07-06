@@ -6,13 +6,16 @@ import { AuthService } from './auth.service';
 })
 export class AccessTokenService {
 
+    private renewingAccessTokenPromise: Promise<string>;
+
     constructor (private authService: AuthService) {}
 
     public getAccessToken (): Promise<string> {
         if (sessionStorage.accessToken && !this.isTokenExpired()) {
             return Promise.resolve(sessionStorage.accessToken);
         } else if (!this.authService.isLoginRequired()) {
-            return this.getRenewedAccessToken();
+            this.getRenewedAccessToken();
+            return this.renewingAccessTokenPromise;
         } else {
             return Promise.reject('Login Required');
         }
@@ -23,9 +26,8 @@ export class AccessTokenService {
         return now > parseInt(sessionStorage.tokenExpires);
     }
 
-    private getRenewedAccessToken (): Promise<string> {
-        console.log('trying to renew token');
-        return new Promise((resolve) => {
+    private getRenewedAccessToken (): void {
+        this.renewingAccessTokenPromise = this.renewingAccessTokenPromise || new Promise((resolve) => {
             const iframe = document.createElement('iframe');
             iframe.setAttribute('src', this.buildAuthUrl());
             iframe.setAttribute('style', 'display: none');

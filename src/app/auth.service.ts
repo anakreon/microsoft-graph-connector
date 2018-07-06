@@ -33,7 +33,7 @@ export class AuthService {
     }
 
     private isValidTokenResponse (tokenresponse: any): boolean {
-        return this.hasValidAuthState(tokenresponse) 
+        return this.hasValidAuthState(tokenresponse)
             && !this.isLoginRequiredErrorResponse(tokenresponse);
     }
 
