@@ -17,6 +17,7 @@ export class AuthService {
     public loginWithResponse (tokenresponse: any): void {
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('idToken');
+        sessionStorage.removeItem('loginRequired');
 
         if (this.isValidTokenResponse(tokenresponse)) {
             sessionStorage.authState = '';
@@ -27,11 +28,21 @@ export class AuthService {
         } else {
             sessionStorage.removeItem('authState');
             sessionStorage.removeItem('authNonce');
+            sessionStorage.loginRequired = true;
         }
     }
 
     private isValidTokenResponse (tokenresponse: any): boolean {
+        return this.hasValidAuthState(tokenresponse) 
+            && !this.isLoginRequiredErrorResponse(tokenresponse);
+    }
+
+    private hasValidAuthState (tokenresponse: any): boolean {
         return tokenresponse.state === sessionStorage.authState;
+    }
+
+    private isLoginRequiredErrorResponse (tokenresponse: any): boolean {
+        return tokenresponse.error === 'login_required';
     }
 
     private getTokenExpireTime (tokenresponse): number {
@@ -39,6 +50,10 @@ export class AuthService {
         const now = new Date();
         const expireDate = new Date(now.getTime() + expiresin);
         return expireDate.getTime();
+    }
+
+    public isLoginRequired (): boolean {
+        return sessionStorage.loginRequired;
     }
 
     public logout (): void {

@@ -11,8 +11,10 @@ export class AccessTokenService {
     public getAccessToken (): Promise<string> {
         if (sessionStorage.accessToken && !this.isTokenExpired()) {
             return Promise.resolve(sessionStorage.accessToken);
-        } else {
+        } else if (!this.authService.isLoginRequired()) {
             return this.getRenewedAccessToken();
+        } else {
+            return Promise.reject('Login Required');
         }
     }
 
@@ -22,6 +24,7 @@ export class AccessTokenService {
     }
 
     private getRenewedAccessToken (): Promise<string> {
+        console.log('trying to renew token');
         return new Promise((resolve) => {
             const iframe = document.createElement('iframe');
             iframe.setAttribute('src', this.buildAuthUrl());

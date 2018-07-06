@@ -1,0 +1,15 @@
+.meeting-wrapper {
+    margin: 10px;
+}
+
+.attendees {
+    margin-bottom: 5px;
+}
+
+.meeting-cards {
+    display: flex;
+}
+
+.meeting-card {
+    margin: 5px;
+}

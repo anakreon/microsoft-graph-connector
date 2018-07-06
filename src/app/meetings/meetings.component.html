@@ -1,0 +1,23 @@
+<div class="meeting-wrapper">
+    <h4>Meetings</h4>
+    <div class="meeting-cards">
+        <mat-card *ngFor="let meeting of meetings" class='meeting-card'>
+            <mat-card-header>
+                <mat-card-title>{{meeting.subject}}</mat-card-title>
+                <mat-card-subtitle>{{meeting.location.displayName}}</mat-card-subtitle>
+                <mat-card-subtitle>{{meeting.start.dateTime | date : 'medium'}}</mat-card-subtitle>
+                <mat-card-subtitle>
+                    <div class="attendees" *ngFor="let attendee of meeting.attendees">
+                        <div>{{attendee.emailAddress.name}}<span *ngIf="attendee.status.response"> ({{attendee.status.response}})</span></div>
+                        <div>{{attendee.emailAddress.address}}</div>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    {{meeting.bodyPreview}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

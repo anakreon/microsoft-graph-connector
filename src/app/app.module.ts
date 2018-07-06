@@ -7,21 +7,36 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSnackBarModule, MatToolbarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MeetingsComponent } from './meetings/meetings.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
-        LoginComponent
+        LoginComponent,
+        NavbarComponent,
+        MeetingsComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatCardModule
+        MatButtonModule,
+        MatCardModule,
+        MatSnackBarModule,
+        MatToolbarModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, 
+            useValue: {
+                duration: 5000,
+                verticalPosition: 'top'
+            }
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

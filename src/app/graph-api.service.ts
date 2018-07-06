@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-client';
 import { Event } from '@microsoft/microsoft-graph-types';
+import { AccessTokenService } from './access-token.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class OfficeRestApiService {
+export class GraphApiService {
 
-    public getCalendarMeetings (token: string): Promise<any> {
-        const client = this.connectToGraphApi(token);
-        return this.queryMeetings(client);
+    constructor (private accessTokenService: AccessTokenService) {}
+
+    public getCalendarMeetings (): Promise<Event[]> {
+        return this.getGraphApiClient().then((client) => {
+            return this.queryMeetings(client);
+        });
     }
 
-    private connectToGraphApi (token: string): MicrosoftGraph.Client {
+    private getGraphApiClient (): Promise<MicrosoftGraph.Client> {
+        return this.getAccessToken().then((accessToken: string) => {
+            return this.initializeGraphApiClient(accessToken);
+        });
+    }
+
+    private getAccessToken (): Promise<string> {
+        return this.accessTokenService.getAccessToken();
+    }
+
+    private initializeGraphApiClient (accessToken: string): MicrosoftGraph.Client {
         return MicrosoftGraph.Client.init({
             authProvider: (done) => {
-                done(null, token);
+                done(null, accessToken);
             }
         });
     }
@@ -24,6 +38,7 @@ export class OfficeRestApiService {
         return new Promise ((resolve, reject) => {
             client
                 .api('/me/events')
+                .top(5)
                 .select('id, subject, start, end, attendees, bodyPreview, location, organizer')
                 .filter('start/dateTime ge \'' + (new Date()).toISOString() + '\'')
                 .orderby('start/dateTime ASC')
