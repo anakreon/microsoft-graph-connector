@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>TrakIn Graph Connector</span>
+        <span>Microsoft Graph Connector</span>
         <span class="fill-remaining-space"></span>
         <span *ngIf="isUserLoggedIn()" class="username">{{ getUsername() }}</span>
-        <button *ngIf="!isUserLoggedIn()" mat-stroked-button color="accent" (click)="login()">Login to Outlook</button>
+        <button *ngIf="!isUserLoggedIn()" mat-stroked-button color="accent" (click)="login()">Login</button>
         <button *ngIf="isUserLoggedIn()" mat-stroked-button color="accent" (click)="logout()">Logout</button>
     </mat-toolbar-row>
 </mat-toolbar>

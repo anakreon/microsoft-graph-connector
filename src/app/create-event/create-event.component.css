@@ -1,0 +1,15 @@
+mat-form-field {
+    display: block;
+}
+
+.mat-dialog-content {
+    max-height: none;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}

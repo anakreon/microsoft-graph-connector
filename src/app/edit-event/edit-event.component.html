@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Event Subject</h2>
+<mat-dialog-content>
+    <form [formGroup]="eventSubjectFormGroup">
+        <p>Input new event subject</p>
+        <mat-form-field>
+            <input matInput placeholder="Event Subject" formControlName="eventSubjectCtrl" (keyup.enter)="closeDialog()" required>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Confirm</button>
+</mat-dialog-actions>

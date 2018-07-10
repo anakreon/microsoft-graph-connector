@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 import { Event } from '@microsoft/microsoft-graph-types';
 
 @Component({

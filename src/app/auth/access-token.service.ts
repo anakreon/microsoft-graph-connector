@@ -14,7 +14,7 @@ export class AccessTokenService {
         if (sessionStorage.accessToken && !this.isTokenExpired()) {
             return Promise.resolve(sessionStorage.accessToken);
         } else if (!this.authService.isLoginRequired()) {
-            this.getRenewedAccessToken();
+            this.renewAccessToken();
             return this.renewingAccessTokenPromise;
         } else {
             return Promise.reject('Login Required');
@@ -26,7 +26,7 @@ export class AccessTokenService {
         return now > parseInt(sessionStorage.tokenExpires);
     }
 
-    private getRenewedAccessToken (): void {
+    private renewAccessToken (): void {
         this.renewingAccessTokenPromise = this.renewingAccessTokenPromise || new Promise((resolve) => {
             const iframe = document.createElement('iframe');
             iframe.setAttribute('src', this.buildAuthUrl());
@@ -39,7 +39,7 @@ export class AccessTokenService {
         });
     }
 
-    private buildAuthUrl () {
+    private buildAuthUrl (): string {
         return this.authService.buildAuthUrl()
             + '&prompt=none'
             + '&domain_hint=' + sessionStorage.userDomainType

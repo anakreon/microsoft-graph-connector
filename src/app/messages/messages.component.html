@@ -1,27 +1,27 @@
-<div class="email-wrapper">
-    <h4>Emails</h4>
-    <div class="email-cards">
-        <mat-card *ngFor="let email of emails" class='email-card'>
+<div class="message-wrapper">
+    <h4>Messages</h4>
+    <div class="message-cards">
+        <mat-card *ngFor="let message of messages" class='message-card'>
             <mat-card-header>
-                <mat-card-title>{{email.subject}}</mat-card-title>
-                <mat-card-subtitle>From: {{email.sender.emailAddress.name}} ({{email.sender.emailAddress.address}})</mat-card-subtitle>
+                <mat-card-title>{{message.subject}}</mat-card-title>
+                <mat-card-subtitle>From: {{message.sender.emailAddress.name}} ({{message.sender.emailAddress.address}})</mat-card-subtitle>
                 <mat-card-subtitle>
                     To:
-                    <div class="recipients" *ngFor="let recipient of email.toRecipients">
+                    <div class="recipients" *ngFor="let recipient of message.toRecipients">
                         <div><span>{{recipient.emailAddress.name}}</span></div>
                         <div>{{recipient.emailAddress.address}}</div>
                     </div>
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     Cc:
-                    <div class="recipients" *ngFor="let recipient of email.ccRecipients">
+                    <div class="recipients" *ngFor="let recipient of message.ccRecipients">
                         <div><span>{{recipient.emailAddress.name}}</span></div>
                         <div>{{recipient.emailAddress.address}}</div>
                     </div>
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     Bcc:
-                    <div class="recipients" *ngFor="let recipient of email.bccRecipients">
+                    <div class="recipients" *ngFor="let recipient of message.bccRecipients">
                         <div><span>{{recipient.emailAddress.name}}</span></div>
                         <div>{{recipient.emailAddress.address}}</div>
                     </div>
@@ -29,11 +29,11 @@
             </mat-card-header>
             <mat-card-content class='content'>
                 <p>
-                    {{email.bodyPreview}}
+                    {{message.bodyPreview}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button (click)="markAsUnread(email)">Mark as Unread</button>
+                <button mat-button (click)="markAsUnread(message)">Mark as Unread</button>
             </mat-card-actions>
         </mat-card>
     </div>

@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { GraphApiService } from './graph-api.service';
+import { GraphApiService } from './auth/graph-api.service';
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-client';
 import { Message } from '@microsoft/microsoft-graph-types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class EmailsService {
+export class MessageService {
 
     constructor (private graphApiService: GraphApiService) {}
 
-    public getEmails (): Promise<Message[]> {
+    public getMessages (): Promise<Message[]> {
         return this.graphApiService.getGraphApiClient().then((client) => {
-            return this.queryEmails(client);
+            return this.queryMessages(client);
         });
     }
 
-    private queryEmails (client: MicrosoftGraph.Client): Promise<Message[]> {
+    private queryMessages (client: MicrosoftGraph.Client): Promise<Message[]> {
         return new Promise ((resolve, reject) => {
             client
                 .api('/me/messages')

@@ -1,16 +1,16 @@
-.email-wrapper {
+.event-wrapper {
     margin: 10px;
 }
 
-.recipients {
+.attendees {
     margin-bottom: 5px;
 }
 
-.email-cards {
+.event-cards {
     display: flex;
 }
 
-.email-card {
+.event-card {
     flex: 1;
     margin: 5px;
     display: flex;

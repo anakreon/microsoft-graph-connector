@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Create Event</h2>
+<mat-dialog-content>
+    <form [formGroup]="eventFormGroup">
+        <mat-form-field>
+            <input matInput placeholder="Subject" formControlName="subjectCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput placeholder="Event Content" formControlName="contentCtrl" required></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Location" formControlName="locationCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Choose a date" [matDatepicker]="myDatepicker" formControlName="dateCtrl" required>
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="time" step="1800" placeholder="Start Time" formControlName="startTimeCtrl" required>
+        </mat-form-field>
+        <span class="red">{{invalidMeetingTimeReason}}</span>
+        <span class="green">{{timeSlotConfirmation}}</span>
+        <mat-form-field>
+            <input matInput placeholder="Attendees Email Addresses" formControlName="attendeesCtrl">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Confirm</button>
+</mat-dialog-actions>

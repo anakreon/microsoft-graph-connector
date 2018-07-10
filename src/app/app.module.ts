@@ -1,56 +1,58 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+    MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule,
+    MatNativeDateModule,  MatSnackBarModule, MatTabsModule, MatToolbarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from '@angular/material';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import {
-    MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule,
-    MatSnackBarModule, MatTabsModule, MatToolbarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS
-} from '@angular/material';
+import { EditEventComponent } from './edit-event/edit-event.component';
+import { EventsComponent } from './events/events.component';
+import { MessagesComponent } from './messages/messages.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MeetingsComponent } from './meetings/meetings.component';
-import { MailsComponent } from './mails/mails.component';
-import { EditMeetingComponent } from './edit-meeting/edit-meeting.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        DashboardComponent,
-        LoginComponent,
-        NavbarComponent,
-        MeetingsComponent,
-        MailsComponent,
-        EditMeetingComponent
-    ],
     imports: [
+        AuthModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatButtonModule,
         MatCardModule,
+        MatDatepickerModule,
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
+        MatNativeDateModule,
         MatSnackBarModule,
         MatTabsModule,
         MatToolbarModule,
         ReactiveFormsModule
     ],
-    providers: [
-        {
-            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, 
-            useValue: {
-                duration: 5000,
-                verticalPosition: 'top'
-            }
-        }
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        NavbarComponent,
+        EventsComponent,
+        MessagesComponent,
+        EditEventComponent,
+        CreateEventComponent
     ],
-    entryComponents: [EditMeetingComponent],
+    providers: [{
+        provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, 
+        useValue: {
+            duration: 5000,
+            verticalPosition: 'top'
+        }
+    }],
+    entryComponents: [CreateEventComponent, EditEventComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
