@@ -31,6 +31,10 @@ export class EventsComponent implements OnInit {
             });
     }
 
+    public getEventDate (event: Event): string {
+        return new Date(event.start.dateTime + 'Z').toString();
+    }
+
     public editSubject (event: Event): void {
         this.showSubjectDialog(event.subject)
             .then((newSubject: string) => this.eventService.updateEventSubject(event.id, newSubject))

@@ -72,11 +72,11 @@ export class EventService {
                 content
             },
             start: {
-                dateTime: startTime.toISOString(),
+                dateTime: startTime.toUTCString(),
                 timeZone: 'UTC'
             },
             end: {
-                dateTime: endTime.toISOString(),
+                dateTime: endTime.toUTCString(),
                 timeZone: 'UTC'
             },
             location: {

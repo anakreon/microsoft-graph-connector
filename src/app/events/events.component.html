@@ -6,7 +6,7 @@
             <mat-card-header>
                 <mat-card-title>{{event.subject}}</mat-card-title>
                 <mat-card-subtitle>{{event.location.displayName}}</mat-card-subtitle>
-                <mat-card-subtitle>{{event.start.dateTime | date : 'medium'}}</mat-card-subtitle>
+                <mat-card-subtitle>{{getEventDate(event)}}</mat-card-subtitle>
                 <mat-card-subtitle>
                     <div class="attendees" *ngFor="let attendee of event.attendees">
                         <div>{{attendee.emailAddress.name}}<span *ngIf="attendee.status.response"> ({{attendee.status.response}})</span></div>
